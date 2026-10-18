@@ -25,7 +25,7 @@ ICON["spotify"] = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10
 # Each track's 30s preview unlocks on the same date its clip goes out on socials (Metricool schedule, SAST).
 TITLES_AT = "2026-10-19T12:00:00+02:00"   # tracklist post
 TRACKS = [
- ("01", "Lovers Sun Set", "", "01-lovers-sun-set", "2026-10-23T18:00:00+02:00"),
+ ("01", "Lovers Sun Set", "", "01-lovers-sun-set", "2026-10-18T00:00:00+02:00"),   # already out
  ("02", "Magic", "with Thab De Soul", "02-magic", "2026-10-29T18:00:00+02:00"),
  ("03", "Phephe Phi", "", "03-phephe-phi", "2026-11-05T18:00:00+02:00"),
  ("04", "Making Love To Me", "", "04-making-love-to-me", "2026-11-20T18:00:00+02:00"),
@@ -35,10 +35,10 @@ TRAILER_AT = "2026-10-19T18:00:00+02:00"
 SAMPLER_AT = "2026-11-26T18:00:00+02:00"
 # The road to release. (time, title, detail, title_is_track_name)
 DROPS = [
+ ("2026-10-18T00:00:00+02:00", "Lovers Sun Set", "Track 01. Out now. Play the preview.", False),
  ("2026-10-19T12:00:00+02:00", "Tracklist revealed", "Five titles. The first look at the road ahead.", False),
  ("2026-10-19T18:00:00+02:00", "Trailer premiere", "The Detour trailer, on YouTube and right here.", False),
  ("2026-10-21T12:00:00+02:00", "The collab", '<span data-mask-until="2026-10-21T12:00:00+02:00" data-real="Magic is made with Thab De Soul.">Track 02 has a guest. You\'ll know who.</span>', False),
- ("2026-10-23T18:00:00+02:00", "Lovers Sun Set", "Track 01. Preview unlocks.", True),
  ("2026-10-29T18:00:00+02:00", "Magic", "Track 02. With Thab De Soul. Preview unlocks.", True),
  ("2026-11-05T18:00:00+02:00", "Phephe Phi", "Track 03. Preview unlocks.", True),
  ("2026-11-13T00:00:00+02:00", "Pre-save opens", "Save The Detour so it lands in your library on release day.", False),
@@ -139,7 +139,7 @@ def player():
     rows = "".join(f'''
       <button class="track" type="button" data-src="audio/{f}.mp3" data-unlock="{u}" aria-pressed="false" aria-label="Track {n} preview">
         <span class="pbtn"><span class="i-play">{ICON["play"]}</span><span class="i-pause">{ICON["pause"]}</span><span class="i-lock">{LOCK}</span></span>
-        <span class="t-main"><span class="t-title"><span class="n">{n}</span>{masked(t, TITLES_AT, "Track " + n)}</span><span class="t-sub">{masked(w, TITLES_AT, "") if w else ""}<span class="t-when" data-when></span></span><span class="t-bar"><i></i></span></span>
+        <span class="t-main"><span class="t-title"><span class="n">{n}</span>{masked(t, min(TITLES_AT, u), "Track " + n)}</span><span class="t-sub">{masked(w, TITLES_AT, "") if w else ""}<span class="t-when" data-when></span></span><span class="t-bar"><i></i></span></span>
         <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span><span class="bpm">115 BPM</span></span>
       </button>''' for n,t,w,f,u in TRACKS)
     return f'<div class="player">{rows}</div><p class="player-note">Each preview unlocks on its drop date. Full EP on 27 November.</p>'
@@ -260,7 +260,7 @@ def page_index():
 <div class="road" aria-hidden="true"></div>
 <section>
   <div class="wrap">
-    <div class="sec-head reveal"><div><p class="eyebrow">Trailer · {masked("Lovers Sun Set", TITLES_AT, "Track 01")}</p><h2>Press play on the drive</h2></div>
+    <div class="sec-head reveal"><div><p class="eyebrow">Trailer · {"Lovers Sun Set"}</p><h2>Press play on the drive</h2></div>
       <a class="btn btn-ghost" href="videos.html">All videos</a></div>
     <div class="reveal d1">{video_frame("media/trailer-lovers-sun-set.mp4","img/trailer-poster.jpg","The Detour trailer", unlock=TRAILER_AT)}</div>
   </div>
@@ -317,7 +317,7 @@ def page_videos():
 <section style="padding-top:10px"><div class="wrap">
   <div class="video-grid">
     <div class="reveal">{video_frame("media/trailer-lovers-sun-set.mp4","img/trailer-poster.jpg","The Detour trailer", unlock=TRAILER_AT)}
-      <div class="cap"><span><b>The Detour (Trailer)</b> · {masked("Lovers Sun Set", TITLES_AT, "Track 01")}</span><span>16:9 · 0:25</span></div></div>
+      <div class="cap"><span><b>The Detour (Trailer)</b> · {"Lovers Sun Set"}</span><span>16:9 · 0:25</span></div></div>
     <div class="reveal d1 vert">{video_frame("media/ep-sampler-9x16.mp4","img/sampler-poster.jpg","The Detour EP sampler", unlock=SAMPLER_AT)}
       <div class="cap"><span><b>EP sampler</b> · all five tracks</span><span>9:16 · 0:25</span></div></div>
   </div>
@@ -392,7 +392,7 @@ def page_press():
     <div><dt>Distribution</dt><dd>Symphonic</dd></div>
   </dl>
   <ol class="reveal" style="margin:28px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:17px">
-    {"".join(f"<li>{masked(t, TITLES_AT, 'Revealed 19 Oct')}{(' <span class=muted>('+masked(w, TITLES_AT, '')+')</span>') if w else ''}</li>" for n,t,w,f,u in TRACKS)}
+    {"".join(f"<li>{masked(t, min(TITLES_AT, u), 'Revealed 19 Oct')}{(' <span class=muted>('+masked(w, TITLES_AT, '')+')</span>') if w else ''}</li>" for n,t,w,f,u in TRACKS)}
   </ol>
 </div></section>
 <section style="padding-top:0"><div class="wrap">
