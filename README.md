@@ -28,7 +28,7 @@ Edit it, then run `python3 tools/build.py` from the repo root.
 
 ## Host on GitHub Pages
 Settings → Pages → Source: Deploy from a branch → `main` / `(root)` → Save.
-Live at `https://<user>.github.io/<repo>/`. Bio link: `.../links.html`.
+Custom domain: `killotronix.co.za` (set by the `CNAME` file). Bio link: `https://killotronix.co.za/links.html`.
 
 ## Run locally
 `python3 -m http.server` then open http://localhost:8000

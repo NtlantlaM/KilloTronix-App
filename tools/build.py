@@ -5,6 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE_NAME = "KilloTronix"
+BASE = "https://killotronix.co.za"
 DESC = "KilloTronix: producer and audio engineer from Gauteng, South Africa. New deep house EP The Detour out 27 November 2026."
 
 ICON = {
@@ -39,7 +40,7 @@ CATALOGUE = [
 SOCIALS = [("spotify","Spotify"),("instagram","Instagram"),("tiktok","TikTok"),("youtube","YouTube"),("facebook","Facebook")]
 NAV = [("index.html","Home"),("music.html","Music"),("videos.html","Videos"),("about.html","About"),("press.html","Press")]
 
-def head(title, desc=DESC, og="img/og.jpg"):
+def head(title, desc=DESC, og="img/og.jpg", path=""):
     full = f"{title} · {SITE_NAME}" if title else f"{SITE_NAME} · The Detour EP"
     return f'''<!doctype html>
 <html lang="en">
@@ -51,7 +52,9 @@ def head(title, desc=DESC, og="img/og.jpg"):
 <meta property="og:site_name" content="{SITE_NAME}">
 <meta property="og:title" content="{full}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{og}">
+<meta property="og:image" content="{BASE}/{og}">
+<meta property="og:url" content="{BASE}/{path}">
+<link rel="canonical" href="{BASE}/{path}">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0d0f">
@@ -208,7 +211,7 @@ def page_index():
 def page_music():
     plats = [("spotify","Spotify"),("appleMusic","Apple Music"),("youtubeMusic","YouTube Music"),("deezer","Deezer"),("tidal","TIDAL"),("amazonMusic","Amazon Music")]
     pl = "".join(f'<a class="chip" data-platform="{k}" href="#" target="_blank" rel="noopener" hidden>{n}</a>' for k,n in plats)
-    return head("Music", "The Detour EP by KilloTronix: tracklist, previews and release details. Plus the full KilloTronix catalogue.") + header("music.html") + f'''<main>
+    return head("Music", "The Detour EP by KilloTronix: tracklist, previews and release details. Plus the full KilloTronix catalogue.", path="music.html") + header("music.html") + f'''<main>
 <header class="page-hero"><div class="wrap">
   <p class="eyebrow fade-up"><b>Music</b> · The Detour EP</p>
   <h1 class="reveal">The Detour</h1>
@@ -238,7 +241,7 @@ def page_music():
 ''' + footer()
 
 def page_videos():
-    return head("Videos", "The Detour EP trailer and visuals by KilloTronix.") + header("videos.html") + f'''<main>
+    return head("Videos", "The Detour EP trailer and visuals by KilloTronix.", path="videos.html") + header("videos.html") + f'''<main>
 <header class="page-hero"><div class="wrap">
   <p class="eyebrow fade-up"><b>Videos</b> · The Detour</p>
   <h1 class="reveal">Watch</h1>
@@ -263,7 +266,7 @@ def page_videos():
 def page_about():
     paras = "".join(f"<p>{p}</p>" for p in BIO_LONG)
     collab = ["Thab De Soul","Native Tribe","Da Q-Bic","Pinochet","Arabic Piano","Melodic Tee","Lord FonQue","Dj DIHNO","InQfive"]
-    return head("About", "About KilloTronix, producer and audio engineer from Gauteng, South Africa.") + header("about.html") + f'''<main>
+    return head("About", "About KilloTronix, producer and audio engineer from Gauteng, South Africa.", path="about.html") + header("about.html") + f'''<main>
 <header class="page-hero"><div class="wrap">
   <p class="eyebrow fade-up"><b>About</b> · Gauteng, South Africa</p>
   <h1 class="reveal">KilloTronix</h1>
@@ -301,7 +304,7 @@ def page_press():
       ("press/KilloTronix_TheDetour_Loop_16x9.mp4","img/hero-wide.jpg","Road loop (silent)","MP4 · 16:9 · 24s"),
     ]
     a = "".join(f'<a class="asset reveal" href="{h}" download><img src="{t}" alt="" loading="lazy"><div><span>{n}<br><small>{m}</small></span>{ICON["down"].replace("<svg","<svg width=\"20\" height=\"20\" fill=\"currentColor\"")}</div></a>' for h,t,n,m in assets)
-    return head("Press kit", "KilloTronix press kit: bios, release facts and downloadable artwork for The Detour EP.") + header("press.html") + f'''<main>
+    return head("Press kit", "KilloTronix press kit: bios, release facts and downloadable artwork for The Detour EP.", path="press.html") + header("press.html") + f'''<main>
 <header class="page-hero"><div class="wrap">
   <p class="eyebrow fade-up"><b>Press kit</b> · The Detour EP</p>
   <h1 class="reveal">Press</h1>
@@ -337,7 +340,7 @@ def page_press():
 def page_links():
     rows = "".join(f'''<a class="lnk" data-link="{k}" href="#" target="_blank" rel="noopener"><span class="ic">{ICON[k]}</span><span><b>{n}</b><span>{h}</span></span>{f'<span class="num" data-stat-wrap><b data-stat="{k}">0</b><small>{l}</small></span>' if l else '<span class="num"><small>Artist page</small></span>'}</a>'''
         for k,n,h,l in [("spotify","Spotify","KilloTronix",""),("tiktok","TikTok","@killotronix","followers"),("instagram","Instagram","@killotronix","followers"),("youtube","YouTube","KilloTronix","subscribers"),("facebook","Facebook","KilloTronix","followers")])
-    return head("Links", "All KilloTronix links in one place: The Detour pre-save, socials and music.") + header("") + f'''<main class="links-page" data-count-host>
+    return head("Links", "All KilloTronix links in one place: The Detour pre-save, socials and music.", path="links.html") + header("") + f'''<main class="links-page" data-count-host>
   <div class="cover-tilt fade-up"><div class="cover"><img src="img/the-detour-cover.jpg" alt="The Detour EP cover" width="1080" height="1080"><span class="tag" data-release-status>Out 27 Nov</span></div></div>
   <div class="countdown" data-countdown aria-label="Countdown to release" style="justify-content:space-between"></div>
   <a class="lnk feature" data-cta aria-disabled="true"><span class="ic">{ICON["play"]}</span><span><b class="lbl">Pre-save opens 13 Nov</b><span>The Detour EP · 27 Nov</span></span><span></span></a>
