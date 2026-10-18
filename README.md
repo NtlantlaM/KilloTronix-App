@@ -1,11 +1,11 @@
 # KilloTronix · Official site
 
-Static artist site for KilloTronix and The Detour EP (out 27 Nov 2026). Plain HTML/CSS/JS, no framework, hosts free on GitHub Pages.
+Static artist site for KilloTronix. Design rules: sharp rectangles (record-sleeve feel), one accent colour, no glows, self-hosted fonts (fonts/) and Phosphor icons (css/icons.css) and The Detour EP (out 27 Nov 2026). Plain HTML/CSS/JS, no framework, hosts free on GitHub Pages.
 
 ## Pages
 | Page | What's on it |
 |---|---|
-| `index.html` | Artist home: waveform hero, current-release card, catalogue, Spotify player, collaborators, video, stats, about, mailing list |
+| `index.html` | Artist home: name + moving wall of record sleeves, full-bleed The Detour band, selected releases, collaborator type band, Spotify player, about statement, mailing list |
 | `music.html` | Full discography (originals, collaborations, remixes) with The Detour featured |
 | `the-detour.html` | Release page: road-loop hero, countdown, locked previews, timeline, trailer, mailing list |
 | `videos.html` | Lovers Sun Set trailer and the EP sampler |

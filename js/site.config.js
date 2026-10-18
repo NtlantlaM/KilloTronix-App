@@ -1,5 +1,5 @@
 /* =====================================================================
-   SITE CONFIG — the only file you need to edit week to week.
+   SITE CONFIG: the only file you need to edit week to week.
    Paste links between the quotes. Leave "" for anything not ready yet;
    the site shows a sensible waiting state instead of a broken link.
    ===================================================================== */

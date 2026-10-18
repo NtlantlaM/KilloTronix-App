@@ -108,6 +108,11 @@
       const p = nextI < 0 ? 1 : nextI === 0 ? 0 : (nextI - .5) / (items.length - 1);
       ol.style.setProperty("--p", p);
     });
+    // days to release
+    $$("[data-days-left]").forEach(el => {
+      const d = Math.floor((relT - t) / 864e5);
+      el.textContent = t >= relT ? "out now" : d <= 1 ? "out tomorrow" : `${d} days to go`;
+    });
     // next-drop chips (hero + links page)
     const firstTl = $("[data-timeline]");
     $$("[data-next-drop]").forEach(a => {
