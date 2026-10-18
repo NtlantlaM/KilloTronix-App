@@ -381,3 +381,6 @@ a.chip:hover{border-color:var(--dusk);color:var(--ember)}
 /* privacy page */
 .prose-plain h3{font-size:28px;margin:28px 0 8px}
 .prose-plain p{color:#d6dcda;font-size:17px;margin:0 0 10px}
+.nl-msg:not(:empty){padding:12px 14px;border-radius:12px;border:1px solid var(--fog-2);background:rgba(11,13,15,.55);font-size:15px;animation:fadeUp .35s var(--ease) both}
+.nl-msg.err:not(:empty){border-color:rgba(224,122,53,.5)}
+.nl-msg.ok:not(:empty){border-color:rgba(159,217,176,.45)}
