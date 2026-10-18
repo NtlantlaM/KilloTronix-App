@@ -5,8 +5,9 @@ Static artist site for KilloTronix and The Detour EP (out 27 Nov 2026). Plain HT
 ## Pages
 | Page | What's on it |
 |---|---|
-| `index.html` | Animated road-loop hero, live countdown, pre-save button, track previews, trailer, audience stats, catalogue |
-| `music.html` | The Detour: previews, release facts, store links (appear on release day), discography |
+| `index.html` | Artist home: waveform hero, current-release card, catalogue, Spotify player, collaborators, video, stats, about, mailing list |
+| `music.html` | Full discography (originals, collaborations, remixes) with The Detour featured |
+| `the-detour.html` | Release page: road-loop hero, countdown, locked previews, timeline, trailer, mailing list |
 | `videos.html` | Lovers Sun Set trailer and the EP sampler |
 | `about.html` | Bio, facts, collaborators, bookings contact |
 | `press.html` | Press kit: copyable bios, release facts, artwork and loop downloads |
@@ -33,6 +34,9 @@ Until then the form collects nothing and tells people sign-ups open soon.
 - `stats`, `statsAsOf`, `showStats`: audience numbers
 
 No rebuild needed for config changes. Commit and push.
+
+## Discography
+Releases live in `DISCO` in `tools/build.py` (title, artists, Spotify link, cover hash). Add new ones at the top of their group and rebuild.
 
 ## Changing page content
 Pages are generated from `tools/build.py` (shared header/footer, bio, tracklist, catalogue).

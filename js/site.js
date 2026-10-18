@@ -223,6 +223,34 @@
     });
   });
 
+  /* ---------- artist hero: flowing waveform lines ---------- */
+  $$("canvas.waves").forEach(cv => {
+    const ctx = cv.getContext("2d"); let w = 0, h = 0, dpr = Math.min(2, devicePixelRatio || 1), t0 = performance.now(), raf = 0, visible = true;
+    const size = () => { const r = cv.getBoundingClientRect(); w = r.width; h = r.height; cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
+    const lines = Array.from({ length: 14 }, (_, i) => ({ amp: 18 + i * 5.5, freq: .0016 + i * .00011, speed: .00022 + i * .000018, off: i * .9, y: .42 + i * .022 }));
+    const draw = now => {
+      const t = (now - t0);
+      ctx.clearRect(0, 0, w, h);
+      lines.forEach((l, i) => {
+        const a = i / lines.length, warm = i % 3 !== 2;
+        ctx.beginPath();
+        for (let x = 0; x <= w; x += 6) {
+          const env = Math.sin(Math.PI * x / w);                                  // calm at the edges
+          const beat = 1 + .35 * Math.pow(Math.max(0, Math.sin(t * .00602)), 8);   // ~115 BPM pulse
+          const y = h * l.y + env * beat * (Math.sin(x * l.freq + t * l.speed + l.off) * l.amp + Math.sin(x * l.freq * 2.3 - t * l.speed * 1.7) * l.amp * .35);
+          x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+        }
+        ctx.strokeStyle = warm ? `rgba(224,122,53,${.06 + a * .22})` : `rgba(143,169,168,${.05 + a * .12})`;
+        ctx.lineWidth = i === lines.length - 4 ? 2 : 1;
+        ctx.stroke();
+      });
+      if (!reduce && visible) raf = requestAnimationFrame(draw);
+    };
+    size(); addEventListener("resize", () => { size(); if (reduce) draw(performance.now()); });
+    if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && !reduce) { cancelAnimationFrame(raf); raf = requestAnimationFrame(draw); } }).observe(cv);
+    draw(performance.now());
+  });
+
   /* ---------- mailing list ---------- */
   $$("[data-newsletter]").forEach(form => {
     const msg = $(".nl-msg", form), btn = $("button[type=submit]", form);

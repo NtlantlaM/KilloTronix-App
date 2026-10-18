@@ -61,8 +61,32 @@ CATALOGUE = [
  ("Remix", "Izinyanda", "Arabic Piano & KilloTronix Remix", "https://open.spotify.com/album/4MzD19XmGP1ZbzyGrCJJ8X"),
  ("Remix", "Nguva", "Thab De Soul & KilloTronix Remix", "https://open.spotify.com/track/71ghZ7yu2ORo0lG1PrUPCT"),
 ]
+# Full catalogue from Spotify. img = Spotify cover hash (served from i.scdn.co).
+DISCO = [
+ # (group, kind, title, artists, url, img)
+ ("Originals","Single","Uniweke","KilloTronix","https://open.spotify.com/album/14ajlB0k1ww6Z3RRhRZ7le","ab67616d00001e028d5d27b591b1bf7008cf5fe3"),
+ ("Originals","Single","No Matter What","KilloTronix","https://open.spotify.com/album/3GTefTu6QHH97SxAFikHMB","ab67616d00001e0223e7ba21fc12cb4de5758a33"),
+ ("Originals","Single","Magagala","KilloTronix","https://open.spotify.com/album/0L8cOf515FVFBfLpOGT80i","ab67616d00001e026f9f0af7fc9f60146de91805"),
+ ("Originals","Single","unite","KilloTronix","https://open.spotify.com/album/4Rk3YzpVCFCQi2kNVGtPlL","ab67616d00001e0260adb31ec41527bda5c062f2"),
+ ("Originals","Compilation","Afro Savvy, Vol. 2","KilloTronix","https://open.spotify.com/album/011gabhbsRdeZfR6oZLLDl","ab67616d00001e0279ec87571c7e4711a00659f5"),
+ ("Collaborations","Collab","Woza La","with Thab De Soul, Native Tribe & Da Q-Bic","https://open.spotify.com/album/1gEAhJ2TRSvhFYs6A6sz5i","ab67616d00001e0291d1c655c04195c48dc0cd5b"),
+ ("Collaborations","Collab","Chants Of Hope","with Thab De Soul, Native Tribe & Da Q-Bic","https://open.spotify.com/album/5OaaD3C2ioKjWATPoK2Tpq","ab67616d00001e0204c8e4494569191b42fc60f0"),
+ ("Collaborations","Collab","Umoya Wami","with Thab De Soul & Pinochet","https://open.spotify.com/album/3CmCVAeoaSilbS0JOdQa1r","ab67616d00001e0239b382c27621308c6c4f31ba"),
+ ("Collaborations","Collab","Moyo Moyo","Thab De Soul, KilloTronix & Pinochet","https://open.spotify.com/album/5OfUuJlo4KEwkgyMq9gr6z","ab67616d00001e02eee93799d22a570bd78d4903"),
+ ("Collaborations","Collab","Ivory Tusk","Thab De Soul & KilloTronix","https://open.spotify.com/album/017a3lNz2VuH9AbgS2jF3i","ab67616d00001e02b9fd45e3232f130b4c30210c"),
+ ("Collaborations","Collab","Oniva","Thab De Soul & KilloTronix","https://open.spotify.com/album/5tciMN2tV40cBOnE1xwmIk","ab67616d00001e02e909159604b4eb62940eacb6"),
+ ("Collaborations","Collab","Fortunes","with Native Tribe & Thab De Soul","https://open.spotify.com/album/2safWIYPPhIZCIJVEpGtiz","ab67616d00001e02b060b39bf4556af668b38db9"),
+ ("Collaborations","Collab","Virtual Agent","SkavaNator, KilloTronix & Ntando Yamahlubi","https://open.spotify.com/album/2lTUUsS8NSQaqHt2H4U4ZW","ab67616d00001e02a4af33a1579e8fb46230921c"),
+ ("Remixes & features","Remix","Izinyanda","Soulroots · Arabic Piano & KilloTronix Remix","https://open.spotify.com/album/4MzD19XmGP1ZbzyGrCJJ8X","ab67616d00001e02ea637eb636870e6625718a36"),
+ ("Remixes & features","Remix","Nguva","Ayah Tlhanyane · Thab De Soul & KilloTronix Remix","https://open.spotify.com/album/0g8KCNjjTZhicFd6EmObDh","ab67616d00001e0231d516e61ad9903b2b4f8ef0"),
+ ("Remixes & features","Feature","Don't Waste Your Time","Dj DIHNO, Lord FonQue, InQfive & KilloTronix","https://open.spotify.com/album/5cSPJkgLCIzjcb9hR7pYCq","ab67616d00001e024add68c81cc9add3bb18a2c9"),
+]
+COLLABS = ["Thab De Soul","Native Tribe","Da Q-Bic","Pinochet","Arabic Piano","Soulroots","Ayah Tlhanyane","SkavaNator","Ntando Yamahlubi","Melodic Tee","Lord FonQue","Dj DIHNO","InQfive"]
+ARTIST_EMBED = "https://open.spotify.com/embed/artist/75e0TZuFyubg5tTEPraGZJ?utm_source=generator&theme=0"
+THIS_IS = "https://open.spotify.com/playlist/37i9dQZF1DZ06evO4bOeG0"
+
 SOCIALS = [("spotify","Spotify"),("instagram","Instagram"),("tiktok","TikTok"),("youtube","YouTube"),("facebook","Facebook")]
-NAV = [("index.html","Home"),("music.html","Music"),("videos.html","Videos"),("about.html","About"),("press.html","Press")]
+NAV = [("index.html","Home"),("music.html","Music"),("the-detour.html","The Detour"),("videos.html","Videos"),("about.html","About"),("press.html","Press")]
 
 def head(title, desc=DESC, og="img/og.jpg", path=""):
     full = f"{title} · {SITE_NAME}" if title else f"{SITE_NAME} · The Detour EP"
@@ -98,7 +122,7 @@ def header(active):
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="KilloTronix home"><i></i>KilloTronix</a>
     <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
-    <nav class="nav" id="nav" aria-label="Main">{links}<a class="btn btn-wait btn-sm" data-cta aria-disabled="true"><span class="lbl">Pre-save</span></a></nav>
+    <nav class="nav" id="nav" aria-label="Main">{links}<a class="btn btn-primary btn-sm nav-new" href="the-detour.html"><span class="nd-dot"></span>New EP · 27.11</a></nav>
   </div>
 </header>
 '''
@@ -111,8 +135,8 @@ def footer():
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <p class="foot-big">Take the<br><span style="color:var(--dusk)">detour.</span></p>
-        <p class="muted" style="margin:0 0 18px">The Detour EP · <span data-release-status>Out 27 Nov</span></p>
+        <p class="foot-big">Killo<span style="color:var(--dusk)">Tronix</span></p>
+        <p class="muted" style="margin:0 0 18px">House music from Gauteng. New EP <a href="the-detour.html" style="color:var(--ember)">The Detour</a> · <span data-release-status>Out 27 Nov</span></p>
         {socials_row()}
       </div>
       <div><h4>Site</h4><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h,t in NAV)}<li><a href="links.html">All links</a></li><li><a href="index.html#join">Mailing list</a></li></ul></div>
@@ -200,6 +224,36 @@ BIO_LONG = [
  "The Detour is a deliberate change of road. Five deep house tracks, all at 115 BPM, a step away from the genre he usually produces. Magic reunites him with frequent collaborator Thab De Soul. The EP is out on 27 November 2026, with pre-saves opening on 13 November.",
 ]
 
+def cover_img(h, alt):
+    return f'<img src="https://i.scdn.co/image/{h}" alt="{alt}" loading="lazy" width="300" height="300" referrerpolicy="no-referrer">'
+
+def release_card(r, i=0):
+    g,k,t,a,u,h = r
+    d = f" d{i%3}" if i%3 else ""
+    return (f'<a class="rel reveal{d}" href="{u}" target="_blank" rel="noopener">'
+            f'<span class="rel-art">{cover_img(h, t + " cover art")}<span class="rel-play">{ICON["play"]}</span></span>'
+            f'<span class="rel-meta"><span class="k">{k}</span><b>{t}</b><span class="w">{a}</span></span></a>')
+
+def detour_card():
+    return ('<a class="rel rel-feature reveal" href="the-detour.html">'
+            '<span class="rel-art"><img src="img/the-detour-cover.jpg" alt="The Detour EP cover" loading="lazy" width="1080" height="1080"><span class="tag" data-release-status>Out 27 Nov</span></span>'
+            '<span class="rel-meta"><span class="k">New EP · 2026</span><b>The Detour</b><span class="w">5 tracks · Deep house</span></span></a>')
+
+def discography(groups=True, limit=None):
+    if not groups:
+        items = DISCO[:limit] if limit else DISCO
+        return '<div class="rel-grid">' + detour_card() + "".join(release_card(r, i+1) for i, r in enumerate(items)) + '</div>'
+    out = []
+    for gname in ["Originals", "Collaborations", "Remixes & features"]:
+        rs = [r for r in DISCO if r[0] == gname]
+        out.append(f'<div class="disco-group"><h3 class="reveal">{gname} <span class="muted">{len(rs)}</span></h3><div class="rel-grid">'
+                   + "".join(release_card(r, i) for i, r in enumerate(rs)) + '</div></div>')
+    return "".join(out)
+
+def spotify_embed():
+    return (f'<div class="embed reveal"><iframe title="KilloTronix on Spotify" src="{ARTIST_EMBED}" width="100%" height="452" frameborder="0" '
+            'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>')
+
 def timeline():
     items = "".join(f'''<li class="drop" data-at="{at}">
         <span class="dot" aria-hidden="true"></span>
@@ -238,15 +292,15 @@ def newsletter(compact=False):
 </section>'''
 
 # ---------------------------------------------------------------- pages
-def page_index():
-    return head("") + header("index.html") + f'''<main>
+def page_detour():
+    return head("The Detour EP", "The Detour: a deep house EP by KilloTronix, out 27 November 2026. Previews, trailer and the road to release.", path="the-detour.html") + header("the-detour.html") + f'''<main>
 <section class="hero" style="padding:0">
   <div class="hero-media" aria-hidden="true">
     <video class="wide" src="media/hero-wide.mp4" poster="img/hero-wide.jpg" autoplay muted loop playsinline preload="auto"></video>
     <video class="sq" src="media/hero-square.mp4" poster="img/hero-square.jpg" autoplay muted loop playsinline preload="auto"></video>
   </div>
   <div class="wrap">
-    <p class="eyebrow fade-up d1"><b>New EP</b> · KilloTronix · Deep house</p>
+    <p class="eyebrow fade-up d1"><a href="index.html" style="color:inherit;text-decoration:none">KilloTronix</a> · <b>New EP</b> · Deep house</p>
     <h1><span class="line"><span>The</span></span><span class="line"><span>Detour</span></span></h1>
     <p class="lede fade-up d2">Five deep house tracks at 115 BPM. Out Friday, 27 November 2026.</p>
     <a class="next-drop fade-up d3" href="#road" data-next-drop><span class="nd-dot"></span><span class="nd-txt">Next stop on the road</span></a>
@@ -267,42 +321,107 @@ def page_index():
 </section>
 {timeline()}
 {newsletter()}
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-head reveal"><div><p class="eyebrow">More from KilloTronix</p><h2>The road so far</h2></div>
+    <a class="btn btn-ghost" href="music.html">Full discography</a></div>
+  {discography(groups=False, limit=5)}
+</div></section>
+</main>
+{JSONLD}
+''' + footer()
+
+def page_index():
+    return head("", "KilloTronix: producer and audio engineer from Gauteng, South Africa. Discography, collaborations and the new deep house EP The Detour, out 27 November 2026.") + header("index.html") + f'''<main>
+<section class="artist-hero">
+  <canvas class="waves" aria-hidden="true"></canvas>
+  <div class="wrap ah-grid">
+    <div class="ah-copy">
+      <p class="eyebrow fade-up d1">Producer · Audio engineer · <b>Gauteng, South Africa</b></p>
+      <h1 class="ah-name"><span class="line"><span>Killo</span></span><span class="line"><span>Tronix</span></span></h1>
+      <p class="lede fade-up d2">House music built from the drums up. {len(DISCO)} releases and counting, with Thab De Soul, Native Tribe, Pinochet, Arabic Piano and more.</p>
+      <div class="hero-ctas fade-up d3">
+        <a class="btn btn-primary" data-link="spotify" href="#" target="_blank" rel="noopener">{ICON["spotify"]}Listen on Spotify</a>
+        <a class="btn btn-ghost" href="music.html">Discography</a>
+      </div>
+    </div>
+    <a class="now-card fade-up d4" href="the-detour.html">
+      <span class="nc-art"><img src="img/the-detour-cover.jpg" alt="The Detour EP cover" width="1080" height="1080"></span>
+      <span class="nc-body">
+        <span class="eyebrow"><b>New EP</b> · <span data-release-status>Out 27 Nov</span></span>
+        <b class="nc-title">The Detour</b>
+        <span class="nc-sub">Five deep house tracks. A new direction.</span>
+        <span class="nc-next" data-next-drop><span class="nd-dot"></span><span class="nd-txt">The road to 27.11</span></span>
+        <span class="nc-go">Explore the EP <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </span>
+    </a>
+  </div>
+</section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track">{"".join(f"<span>{r[2]}<em>✦</em></span>" for r in DISCO)*2}</div></div>
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><div><p class="eyebrow">Discography</p><h2>The catalogue</h2></div>
+      <a class="btn btn-ghost" href="music.html">All {len(DISCO)+1} releases</a></div>
+    {discography(groups=False, limit=7)}
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="wrap split-listen">
+    <div class="reveal" style="display:flex;flex-direction:column;gap:16px;min-width:0">
+      <p class="eyebrow">Press play</p><h2>Hear it here</h2>
+      <p class="lede">The KilloTronix catalogue on Spotify. Follow to get every release the day it lands.</p>
+      <div class="hero-ctas"><a class="btn btn-ghost" href="{THIS_IS}" target="_blank" rel="noopener">{ICON["spotify"]}This Is KilloTronix</a></div>
+    </div>
+    {spotify_embed()}
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><p class="eyebrow">Collaborations</p><h2>Made with</h2></div></div>
+    <div class="collab-cloud reveal">{"".join(f'<span>{c}</span>' for c in COLLABS)}</div>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><p class="eyebrow">Latest video · The Detour</p><h2>Watch</h2></div>
+      <a class="btn btn-ghost" href="videos.html">All videos</a></div>
+    <div class="reveal d1">{video_frame("media/trailer-lovers-sun-set.mp4","img/trailer-poster.jpg","The Detour trailer", unlock=TRAILER_AT)}</div>
+  </div>
+</section>
 {stats_section()}
-{catalogue_section()}
+<section style="padding-top:0">
+  <div class="wrap split">
+    <div class="reveal" style="display:flex;flex-direction:column;gap:14px"><p class="eyebrow">About</p><h2>The artist</h2></div>
+    <div class="prose reveal d1"><p>{BIO_LONG[0]} {BIO_LONG[1]}</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><a class="btn btn-ghost" href="about.html">Full bio</a><a class="btn btn-ghost" href="press.html">Press kit</a></div></div>
+  </div>
+</section>
+{newsletter()}
 </main>
 {JSONLD}
 ''' + footer()
 
 def page_music():
-    plats = [("spotify","Spotify"),("appleMusic","Apple Music"),("youtubeMusic","YouTube Music"),("deezer","Deezer"),("tidal","TIDAL"),("amazonMusic","Amazon Music")]
-    pl = "".join(f'<a class="chip" data-platform="{k}" href="#" target="_blank" rel="noopener" hidden>{n}</a>' for k,n in plats)
-    return head("Music", "The Detour EP by KilloTronix: tracklist, previews and release details. Plus the full KilloTronix catalogue.", path="music.html") + header("music.html") + f'''<main>
+    return head("Music", "KilloTronix discography: originals, collaborations and remixes, plus the new EP The Detour.", path="music.html") + header("music.html") + f'''<main>
 <header class="page-hero"><div class="wrap">
-  <p class="eyebrow fade-up"><b>Music</b> · The Detour EP</p>
-  <h1 class="reveal">The Detour</h1>
-  <p class="lede reveal d1">Out 27 November 2026. Play the previews, then pre-save so it lands in your library on release day.</p>
-  <div class="reveal d2">{cta_buttons()}</div>
+  <p class="eyebrow fade-up"><b>Music</b> · {len(DISCO)+1} releases</p>
+  <h1 class="reveal">Discography</h1>
+  <p class="lede reveal d1">Originals, collaborations and remixes. Every cover opens on Spotify.</p>
 </div></header>
-<section style="padding-top:20px"><div class="wrap">{ep_block("Tracklist", lead=False)}</div></section>
-<section style="padding-top:0"><div class="wrap">
-  <dl class="facts reveal">
-    <div><dt>Release date</dt><dd>Fri 27 Nov 2026</dd></div>
-    <div><dt>Pre-save</dt><dd>From 13 Nov 2026</dd></div>
-    <div><dt>Format</dt><dd>EP · 5 tracks</dd></div>
-    <div><dt>Genre</dt><dd>Deep house</dd></div>
-    <div><dt>Tempo</dt><dd>115 BPM</dd></div>
-    <div><dt>Featuring</dt><dd>Thab De Soul (Magic)</dd></div>
-    <div><dt>Distribution</dt><dd>Symphonic</dd></div>
-  </dl>
-  <div class="reveal" style="margin-top:36px;display:flex;flex-direction:column;gap:14px">
-    <p class="eyebrow">Listen on</p>
-    <div class="chips">{pl}<span class="muted" data-platforms-empty>Store links appear here on release day. Until then, follow KilloTronix on <a data-link="spotify" href="#" target="_blank" rel="noopener">Spotify</a>.</span></div>
-  </div>
+<section style="padding-top:10px"><div class="wrap">
+  <a class="feature-band reveal" href="the-detour.html">
+    <span class="fb-art"><img src="img/the-detour-cover.jpg" alt="The Detour EP cover" width="1080" height="1080"></span>
+    <span class="fb-body"><span class="eyebrow"><b>Latest</b> · New EP · <span data-release-status>Out 27 Nov</span></span>
+      <b class="fb-title">The Detour</b>
+      <span class="lede">Five deep house tracks at 115 BPM. Previews unlock one by one on the way to release day.</span>
+      <span class="btn btn-primary" style="align-self:flex-start">Explore the EP</span></span>
+  </a>
 </div></section>
-{timeline()}
-{newsletter()}
-<div class="road" aria-hidden="true"></div>
-{catalogue_section("discography")}
+<section style="padding-top:0"><div class="wrap">{discography()}</div></section>
+<section style="padding-top:0"><div class="wrap split-listen">
+  <div class="reveal" style="display:flex;flex-direction:column;gap:16px;min-width:0"><p class="eyebrow">Listen</p><h2>On Spotify</h2>
+    <div class="hero-ctas"><a class="btn btn-ghost" href="{THIS_IS}" target="_blank" rel="noopener">{ICON["spotify"]}This Is KilloTronix</a></div></div>
+  {spotify_embed()}
+</div></section>
 </main>
 {JSONLD}
 ''' + footer()
@@ -411,9 +530,9 @@ def page_links():
   <div class="cover-tilt fade-up"><div class="cover"><img src="img/the-detour-cover.jpg" alt="The Detour EP cover" width="1080" height="1080"><span class="tag" data-release-status>Out 27 Nov</span></div></div>
   <div class="countdown" data-countdown aria-label="Countdown to release" style="justify-content:space-between"></div>
   <a class="lnk feature" data-cta aria-disabled="true"><span class="ic">{ICON["play"]}</span><span><b class="lbl">Pre-save opens 13 Nov</b><span>The Detour EP · 27 Nov</span></span><span></span></a>
-  <a class="lnk" href="index.html#road" data-next-drop><span class="ic">{LOCK}</span><span><b>Next drop</b><span class="nd-txt">The road to 27.11</span></span><span></span></a>
+  <a class="lnk" href="the-detour.html#road" data-next-drop><span class="ic">{LOCK}</span><span><b>Next drop</b><span class="nd-txt">The road to 27.11</span></span><span></span></a>
   <a class="lnk" href="index.html#join"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.4V17h16V7.4l-8 5.3-8-5.3ZM5.4 7l6.6 4.4L18.6 7H5.4Z"/></svg></span><span><b>Join the mailing list</b><span>Each track the moment it unlocks</span></span><span></span></a>
-  <a class="lnk" href="music.html"><span class="ic">{ICON["play"]}</span><span><b>Play the previews</b><span>Unlocked tracks, 30 seconds each</span></span><span></span></a>
+  <a class="lnk" href="the-detour.html"><span class="ic">{ICON["play"]}</span><span><b>Play the previews</b><span>Unlocked tracks, 30 seconds each</span></span><span></span></a>
   <a class="lnk" href="videos.html"><span class="ic">{ICON["youtube"]}</span><span><b>Watch the trailer</b><span>The Detour</span></span><span></span></a>
   {rows}
   <p class="muted" style="text-align:center;font-size:13px;margin:8px 0 0">Numbers as of <span data-stats-asof></span></p>
@@ -458,7 +577,7 @@ def page_privacy():
 </main>
 ''' + footer()
 
-PAGES = {"index.html":page_index,"music.html":page_music,"videos.html":page_videos,"about.html":page_about,"press.html":page_press,"links.html":page_links,"404.html":page_404,"privacy.html":page_privacy}
+PAGES = {"index.html":page_index,"the-detour.html":page_detour,"music.html":page_music,"videos.html":page_videos,"about.html":page_about,"press.html":page_press,"links.html":page_links,"404.html":page_404,"privacy.html":page_privacy}
 def drops_js():
     import json
     rows = [{"at": at, "title": t, "masked": ("Track " + d.split()[1].rstrip(".,") + " preview") if is_track else t, "until": TITLES_AT} for at,t,d,is_track in DROPS]
