@@ -3,54 +3,134 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>KilloTronix · The Detour</title>
-<meta name="description" content="KilloTronix: The Detour EP out 27 Nov 2026. Pre-save, follow and listen in one place.">
+<title>KilloTronix · The Detour EP</title>
+<meta name="description" content="KilloTronix: producer and audio engineer from Gauteng, South Africa. New deep house EP The Detour out 27 November 2026.">
+<meta property="og:site_name" content="KilloTronix">
 <meta property="og:title" content="KilloTronix · The Detour EP">
-<meta property="og:description" content="Deep house EP out 27 Nov 2026. Pre-save, follow and listen.">
-<meta property="og:image" content="assets/og.jpg">
-<meta property="og:type" content="music.album">
+<meta property="og:description" content="KilloTronix: producer and audio engineer from Gauteng, South Africa. New deep house EP The Detour out 27 November 2026.">
+<meta property="og:image" content="img/og.jpg">
+<meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0b0d0f">
-<link rel="icon" href="assets/the-detour-cover.jpg">
+<link rel="icon" href="img/the-detour-cover.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="wrap" id="app">
-  <header>
-    <h1 class="name" id="artist"></h1>
-    <p class="tag" id="tagline"></p>
-  </header>
-
-  <div class="cover"><img id="coverImg" alt="The Detour EP cover: a winding road at dusk"><span class="ribbon" id="ribbon"></span></div>
-
-  <div class="release">
-    <h2 id="relTitle"></h2>
-    <p class="meta" id="relMeta"></p>
-    <div class="count" id="count" aria-label="Countdown to release"></div>
-    <a class="cta" id="cta"></a>
-    <ol class="tracks" id="tracks"></ol>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="KilloTronix home"><i></i>KilloTronix</a>
+    <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+    <nav class="nav" id="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="music.html">Music</a><a href="videos.html">Videos</a><a href="about.html">About</a><a href="press.html">Press</a><a class="btn btn-wait btn-sm" data-cta aria-disabled="true"><span class="lbl">Pre-save</span></a></nav>
   </div>
-
-  <section>
-    <h3>Follow</h3>
-    <div class="links" id="socials"></div>
-    <div class="total" id="total"></div>
-  </section>
-
-  <section>
-    <h3>Listen to the catalogue</h3>
-    <div class="cat" id="catalogue"></div>
-  </section>
-
-  <footer>
-    <div id="asof"></div>
-    <button id="share" type="button">Copy page link</button>
-  </footer>
-</div>
-<script src="artist.config.js"></script>
-<script src="app.js"></script>
+</header>
+<main>
+<section class="hero" style="padding:0">
+  <div class="hero-media" aria-hidden="true">
+    <video class="wide" src="media/hero-wide.mp4" poster="img/hero-wide.jpg" autoplay muted loop playsinline preload="auto"></video>
+    <video class="sq" src="media/hero-square.mp4" poster="img/hero-square.jpg" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+  <div class="wrap">
+    <p class="eyebrow fade-up d1"><b>New EP</b> · KilloTronix · Deep house</p>
+    <h1><span class="line"><span>The</span></span><span class="line"><span>Detour</span></span></h1>
+    <p class="lede fade-up d2">Five deep house tracks at 115 BPM. Out Friday, 27 November 2026.</p>
+    <div class="countdown fade-up d3" data-countdown aria-label="Countdown to release"></div>
+    <div class="fade-up d4"><div class="hero-ctas">
+      <a class="btn btn-wait" data-cta aria-disabled="true"><span class="lbl">Pre-save opens 13 Nov</span></a>
+      <a class="btn btn-ghost" href="videos.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Watch the trailer</a>
+    </div></div>
+  </div>
+  <a class="scroll-cue" href="#ep">Scroll</a>
+</section>
+<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>The Detour<em>✦</em></span><span>Out 27.11.2026<em>✦</em></span><span>Deep house<em>✦</em></span><span>115 BPM<em>✦</em></span><span>Lovers Sun Set<em>✦</em></span><span>Magic<em>✦</em></span><span>Phephe Phi<em>✦</em></span><span>Making Love To Me<em>✦</em></span><span>Free Your Mind<em>✦</em></span><span>The Detour<em>✦</em></span><span>Out 27.11.2026<em>✦</em></span><span>Deep house<em>✦</em></span><span>115 BPM<em>✦</em></span><span>Lovers Sun Set<em>✦</em></span><span>Magic<em>✦</em></span><span>Phephe Phi<em>✦</em></span><span>Making Love To Me<em>✦</em></span><span>Free Your Mind<em>✦</em></span></div></div>
+<section id="ep"><div class="wrap"><div class="ep">
+      <div class="cover-tilt reveal"><div class="cover"><img src="img/the-detour-cover.jpg" alt="The Detour EP cover: a winding road lit orange at dusk through a misty pine forest" loading="lazy" width="1080" height="1080"><span class="tag" data-release-status>Out 27 Nov</span></div></div>
+      <div class="reveal d1" style="display:flex;flex-direction:column;gap:22px;min-width:0">
+        <p class="eyebrow"><b>EP</b> · 5 tracks · Deep house · 115 BPM</p>
+        <h2>The EP</h2>
+        <p class="lede">Five deep house tracks, all at 115 BPM. A change of road from the sound KilloTronix usually makes, and the first release built around it.</p>
+        <div class="player">
+      <button class="track" type="button" data-src="audio/01-lovers-sun-set.mp3" aria-pressed="false" aria-label="Play 30-second preview of Lovers Sun Set">
+        <span class="pbtn"><span class="i-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span>
+        <span class="t-main"><span class="t-title"><span class="n">01</span>Lovers Sun Set</span><span class="t-bar"><i></i></span></span>
+        <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span>115 BPM</span>
+      </button>
+      <button class="track" type="button" data-src="audio/02-magic.mp3" aria-pressed="false" aria-label="Play 30-second preview of Magic">
+        <span class="pbtn"><span class="i-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span>
+        <span class="t-main"><span class="t-title"><span class="n">02</span>Magic</span><span class="t-sub">with Thab De Soul</span><span class="t-bar"><i></i></span></span>
+        <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span>115 BPM</span>
+      </button>
+      <button class="track" type="button" data-src="audio/03-phephe-phi.mp3" aria-pressed="false" aria-label="Play 30-second preview of Phephe Phi">
+        <span class="pbtn"><span class="i-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span>
+        <span class="t-main"><span class="t-title"><span class="n">03</span>Phephe Phi</span><span class="t-bar"><i></i></span></span>
+        <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span>115 BPM</span>
+      </button>
+      <button class="track" type="button" data-src="audio/04-making-love-to-me.mp3" aria-pressed="false" aria-label="Play 30-second preview of Making Love To Me">
+        <span class="pbtn"><span class="i-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span>
+        <span class="t-main"><span class="t-title"><span class="n">04</span>Making Love To Me</span><span class="t-bar"><i></i></span></span>
+        <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span>115 BPM</span>
+      </button>
+      <button class="track" type="button" data-src="audio/05-free-your-mind.mp3" aria-pressed="false" aria-label="Play 30-second preview of Free Your Mind">
+        <span class="pbtn"><span class="i-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="i-pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></span></span>
+        <span class="t-main"><span class="t-title"><span class="n">05</span>Free Your Mind</span><span class="t-bar"><i></i></span></span>
+        <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span>115 BPM</span>
+      </button></div><p class="player-note">30-second previews. Full tracks on 27 November.</p>
+      </div>
+    </div></div></section>
+<div class="road" aria-hidden="true"></div>
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><div><p class="eyebrow">Trailer · Lovers Sun Set</p><h2>Press play on the drive</h2></div>
+      <a class="btn btn-ghost" href="videos.html">All videos</a></div>
+    <div class="reveal d1"><div class="video-frame "><video src="media/trailer-lovers-sun-set.mp4" poster="img/trailer-poster.jpg" preload="none" playsinline></video>
+      <button class="play-overlay" type="button" aria-label="Play The Detour trailer"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></button></div></div>
+  </div>
+</section>
+<section data-stats-section>
+  <div class="wrap">
+    <div class="sec-head reveal"><div><p class="eyebrow">Follow the journey</p><h2>On the road with us</h2></div>
+      <p class="muted" style="margin:0" data-stat-wrap>Combined <b data-stat-total style="color:var(--chalk);font-family:var(--mono)">0</b> · as of <span data-stats-asof></span></p></div>
+    <div class="stats reveal d1" data-count-host><a class="stat" data-link="tiktok" href="#" target="_blank" rel="noopener" data-stat-wrap>
+        <span class="top">TikTok<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.6 3.8v3a7 7 0 0 1-3.6-1.1v6.1A5.8 5.8 0 1 1 10.8 9v3.1a2.8 2.8 0 1 0 2.8 2.8V3h3Z"/></svg></span><b data-stat="tiktok">0</b><span class="l">followers</span></a><a class="stat" data-link="instagram" href="#" target="_blank" rel="noopener" data-stat-wrap>
+        <span class="top">Instagram<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm4.9-8.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2ZM12 3c-2.4 0-2.7 0-3.7.1-3.3.1-5.1 1.9-5.2 5.2C3 9.3 3 9.6 3 12s0 2.7.1 3.7c.1 3.3 1.9 5.1 5.2 5.2 1 .1 1.3.1 3.7.1s2.7 0 3.7-.1c3.3-.1 5.1-1.9 5.2-5.2.1-1 .1-1.3.1-3.7s0-2.7-.1-3.7c-.1-3.3-1.9-5.1-5.2-5.2C14.7 3 14.4 3 12 3Zm0 1.6c2.4 0 2.6 0 3.6.1 2.4.1 3.6 1.3 3.7 3.7.1.9.1 1.2.1 3.6s0 2.6-.1 3.6c-.1 2.4-1.3 3.6-3.7 3.7-1 .1-1.2.1-3.6.1s-2.6 0-3.6-.1c-2.4-.1-3.6-1.3-3.7-3.7-.1-1-.1-1.2-.1-3.6s0-2.6.1-3.6c.1-2.4 1.3-3.6 3.7-3.7 1-.1 1.2-.1 3.6-.1Z"/></svg></span><b data-stat="instagram">0</b><span class="l">followers</span></a><a class="stat" data-link="facebook" href="#" target="_blank" rel="noopener" data-stat-wrap>
+        <span class="top">Facebook<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></span><b data-stat="facebook">0</b><span class="l">followers</span></a><a class="stat" data-link="youtube" href="#" target="_blank" rel="noopener" data-stat-wrap>
+        <span class="top">YouTube<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></span><b data-stat="youtube">0</b><span class="l">subscribers</span></a></div>
+  </div>
+</section>
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><div><p class="eyebrow">Catalogue</p><h2>Where the road began</h2></div>
+      <a class="btn btn-ghost" data-link="spotify" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.62.62 0 0 1-.86.2c-2.35-1.43-5.3-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.81-.87 7.08-.5 9.72 1.11.3.18.39.57.21.86Zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.69-1.65-6.8-2.13-9.98-1.17a.78.78 0 1 1-.45-1.5c3.64-1.1 8.16-.57 11.24 1.33.37.22.48.71.26 1.08Zm.1-2.83C14.7 8.94 9.37 8.76 6.3 9.7a.94.94 0 1 1-.54-1.8c3.53-1.07 9.42-.86 13.13 1.34a.94.94 0 0 1-.97 1.61Z"/></svg>All music on Spotify</a></div>
+    <div class="cards"><a class="card reveal" href="https://open.spotify.com/album/1gEAhJ2TRSvhFYs6A6sz5i" target="_blank" rel="noopener"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="k">Single</span><h3>Woza La</h3><span class="w">with Thab De Soul, Native Tribe & Da Q-Bic</span></a><a class="card reveal d1" href="https://open.spotify.com/album/3CmCVAeoaSilbS0JOdQa1r" target="_blank" rel="noopener"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="k">Single</span><h3>Umoya Wami</h3><span class="w">with Thab De Soul & Pinochet</span></a><a class="card reveal d2" href="https://open.spotify.com/album/2safWIYPPhIZCIJVEpGtiz" target="_blank" rel="noopener"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="k">Single</span><h3>Fortunes</h3><span class="w">with Native Tribe & Thab De Soul</span></a><a class="card reveal" href="https://open.spotify.com/album/0L8cOf515FVFBfLpOGT80i" target="_blank" rel="noopener"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="k">Single</span><h3>Magagala</h3><span class="w">KilloTronix</span></a><a class="card reveal d1" href="https://open.spotify.com/album/4MzD19XmGP1ZbzyGrCJJ8X" target="_blank" rel="noopener"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="k">Remix</span><h3>Izinyanda</h3><span class="w">Arabic Piano & KilloTronix Remix</span></a><a class="card reveal d2" href="https://open.spotify.com/track/71ghZ7yu2ORo0lG1PrUPCT" target="_blank" rel="noopener"><svg class="arr" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M8 7h9v9"/></svg><span class="k">Remix</span><h3>Nguva</h3><span class="w">Thab De Soul & KilloTronix Remix</span></a></div>
+  </div>
+</section>
+</main>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MusicGroup","name":"KilloTronix","genre":["Deep house","House"],
+ "foundingLocation":{"@type":"Place","name":"Gauteng, South Africa"},
+ "sameAs":["https://open.spotify.com/artist/75e0TZuFyubg5tTEPraGZJ","https://www.instagram.com/killotronix/","https://www.tiktok.com/@killotronix","https://www.youtube.com/channel/UCVjBrcWtjk5tYX1POQ_gtgw"],
+ "album":{"@type":"MusicAlbum","name":"The Detour","albumReleaseType":"https://schema.org/EPRelease","datePublished":"2026-11-27","numTracks":5,
+  "track":[{"@type":"MusicRecording","name":"Lovers Sun Set"},{"@type":"MusicRecording","name":"Magic","byArtist":[{"@type":"MusicGroup","name":"KilloTronix"},{"@type":"MusicGroup","name":"Thab De Soul"}]},{"@type":"MusicRecording","name":"Phephe Phi"},{"@type":"MusicRecording","name":"Making Love To Me"},{"@type":"MusicRecording","name":"Free Your Mind"}]}}
+</script>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-big">Take the<br><span style="color:var(--dusk)">detour.</span></p>
+        <p class="muted" style="margin:0 0 18px">The Detour EP · <span data-release-status>Out 27 Nov</span></p>
+        <div class="socials"><a data-link="spotify" href="#" target="_blank" rel="noopener" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.62.62 0 0 1-.86.2c-2.35-1.43-5.3-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.81-.87 7.08-.5 9.72 1.11.3.18.39.57.21.86Zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.69-1.65-6.8-2.13-9.98-1.17a.78.78 0 1 1-.45-1.5c3.64-1.1 8.16-.57 11.24 1.33.37.22.48.71.26 1.08Zm.1-2.83C14.7 8.94 9.37 8.76 6.3 9.7a.94.94 0 1 1-.54-1.8c3.53-1.07 9.42-.86 13.13 1.34a.94.94 0 0 1-.97 1.61Z"/></svg></a><a data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4Zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm4.9-8.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2ZM12 3c-2.4 0-2.7 0-3.7.1-3.3.1-5.1 1.9-5.2 5.2C3 9.3 3 9.6 3 12s0 2.7.1 3.7c.1 3.3 1.9 5.1 5.2 5.2 1 .1 1.3.1 3.7.1s2.7 0 3.7-.1c3.3-.1 5.1-1.9 5.2-5.2.1-1 .1-1.3.1-3.7s0-2.7-.1-3.7c-.1-3.3-1.9-5.1-5.2-5.2C14.7 3 14.4 3 12 3Zm0 1.6c2.4 0 2.6 0 3.6.1 2.4.1 3.6 1.3 3.7 3.7.1.9.1 1.2.1 3.6s0 2.6-.1 3.6c-.1 2.4-1.3 3.6-3.7 3.7-1 .1-1.2.1-3.6.1s-2.6 0-3.6-.1c-2.4-.1-3.6-1.3-3.7-3.7-.1-1-.1-1.2-.1-3.6s0-2.6.1-3.6c.1-2.4 1.3-3.6 3.7-3.7 1-.1 1.2-.1 3.6-.1Z"/></svg></a><a data-link="tiktok" href="#" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.6 3.8v3a7 7 0 0 1-3.6-1.1v6.1A5.8 5.8 0 1 1 10.8 9v3.1a2.8 2.8 0 1 0 2.8 2.8V3h3Z"/></svg></a><a data-link="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg></a><a data-link="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1Z"/></svg></a></div>
+      </div>
+      <div><h4>Site</h4><ul><li><a href="index.html">Home</a></li><li><a href="music.html">Music</a></li><li><a href="videos.html">Videos</a></li><li><a href="about.html">About</a></li><li><a href="press.html">Press</a></li><li><a href="links.html">All links</a></li></ul></div>
+      <div><h4>Listen</h4><ul><li><a data-link="spotify" href="#" target="_blank" rel="noopener">Spotify</a></li><li><a data-link="youtube" href="#" target="_blank" rel="noopener">YouTube</a></li><li><a href="music.html#discography">Discography</a></li></ul></div>
+      <div><h4>Bookings &amp; press</h4><ul><li data-contact>DM @killotronix on Instagram</li><li><a href="press.html">Press kit</a></li></ul></div>
+    </div>
+    <div class="foot-base"><span>© <span data-year>2026</span> KilloTronix. All rights reserved.</span><span>Gauteng, South Africa</span></div>
+  </div>
+</footer>
+<script src="js/site.config.js"></script>
+<script src="js/site.js"></script>
 </body>
 </html>
