@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KilloTronix · The Detour</title>
+<meta name="description" content="KilloTronix: The Detour EP out 27 Nov 2026. Pre-save, follow and listen in one place.">
+<meta property="og:title" content="KilloTronix · The Detour EP">
+<meta property="og:description" content="Deep house EP out 27 Nov 2026. Pre-save, follow and listen.">
+<meta property="og:image" content="assets/og.jpg">
+<meta property="og:type" content="music.album">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b0d0f">
+<link rel="icon" href="assets/the-detour-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap" id="app">
+  <header>
+    <h1 class="name" id="artist"></h1>
+    <p class="tag" id="tagline"></p>
+  </header>
+
+  <div class="cover"><img id="coverImg" alt="The Detour EP cover: a winding road at dusk"><span class="ribbon" id="ribbon"></span></div>
+
+  <div class="release">
+    <h2 id="relTitle"></h2>
+    <p class="meta" id="relMeta"></p>
+    <div class="count" id="count" aria-label="Countdown to release"></div>
+    <a class="cta" id="cta"></a>
+    <ol class="tracks" id="tracks"></ol>
+  </div>
+
+  <section>
+    <h3>Follow</h3>
+    <div class="links" id="socials"></div>
+    <div class="total" id="total"></div>
+  </section>
+
+  <section>
+    <h3>Listen to the catalogue</h3>
+    <div class="cat" id="catalogue"></div>
+  </section>
+
+  <footer>
+    <div id="asof"></div>
+    <button id="share" type="button">Copy page link</button>
+  </footer>
+</div>
+<script src="artist.config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
