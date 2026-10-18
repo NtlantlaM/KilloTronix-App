@@ -20,6 +20,19 @@ window.SITE = {
   // YouTube trailer link once it's live (scheduled 19 Oct 18:00). Shown as a button on the Videos page.
   youtubeTrailerUrl: "",
 
+  // Mailing list. Paste your provider's form action URL to switch sign-ups on.
+  //  MailerLite: Forms → Embedded form → HTML code → copy the <form action="..."> URL
+  //              emailField: "fields[email]", nameField: "fields[name]", extra: { "ml-submit": "1", "anticsrf": "true" }
+  //  Mailchimp:  Audience → Signup forms → Embedded → copy the <form action="..."> URL
+  //              emailField: "EMAIL", nameField: "FNAME", extra: {}
+  // Until action is filled, the form explains sign-ups open soon and collects nothing.
+  newsletter: {
+    action: "",
+    emailField: "fields[email]",
+    nameField: "fields[name]",
+    extra: { "ml-submit": "1", "anticsrf": "true" }
+  },
+
   // Bookings & press contact. Leave "" to send people to Instagram DMs instead.
   bookingEmail: "",
 

@@ -22,13 +22,37 @@ ICON = {
 # fix accidental digits in the spotify path above
 ICON["spotify"] = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.6 14.4a.62.62 0 0 1-.86.2c-2.35-1.43-5.3-1.76-8.79-.96a.62.62 0 1 1-.28-1.21c3.81-.87 7.08-.5 9.72 1.11.3.18.39.57.21.86Zm1.22-2.72a.78.78 0 0 1-1.07.26c-2.69-1.65-6.8-2.13-9.98-1.17a.78.78 0 1 1-.45-1.5c3.64-1.1 8.16-.57 11.24 1.33.37.22.48.71.26 1.08Zm.1-2.83C14.7 8.94 9.37 8.76 6.3 9.7a.94.94 0 1 1-.54-1.8c3.53-1.07 9.42-.86 13.13 1.34a.94.94 0 0 1-.97 1.61Z"/></svg>'
 
+# Each track's 30s preview unlocks on the same date its clip goes out on socials (Metricool schedule, SAST).
+TITLES_AT = "2026-10-19T12:00:00+02:00"   # tracklist post
 TRACKS = [
- ("01", "Lovers Sun Set", "", "01-lovers-sun-set"),
- ("02", "Magic", "with Thab De Soul", "02-magic"),
- ("03", "Phephe Phi", "", "03-phephe-phi"),
- ("04", "Making Love To Me", "", "04-making-love-to-me"),
- ("05", "Free Your Mind", "", "05-free-your-mind"),
+ ("01", "Lovers Sun Set", "", "01-lovers-sun-set", "2026-10-23T18:00:00+02:00"),
+ ("02", "Magic", "with Thab De Soul", "02-magic", "2026-10-29T18:00:00+02:00"),
+ ("03", "Phephe Phi", "", "03-phephe-phi", "2026-11-05T18:00:00+02:00"),
+ ("04", "Making Love To Me", "", "04-making-love-to-me", "2026-11-20T18:00:00+02:00"),
+ ("05", "Free Your Mind (Dub Mix)", "", "05-free-your-mind", "2026-11-24T18:00:00+02:00"),
 ]
+TRAILER_AT = "2026-10-19T18:00:00+02:00"
+SAMPLER_AT = "2026-11-26T18:00:00+02:00"
+# The road to release. (time, title, detail, title_is_track_name)
+DROPS = [
+ ("2026-10-19T12:00:00+02:00", "Tracklist revealed", "Five titles. The first look at the road ahead.", False),
+ ("2026-10-19T18:00:00+02:00", "Trailer premiere", "The Detour trailer, on YouTube and right here.", False),
+ ("2026-10-21T12:00:00+02:00", "The collab", '<span data-mask-until="2026-10-21T12:00:00+02:00" data-real="Magic is made with Thab De Soul.">Track 02 has a guest. You\'ll know who.</span>', False),
+ ("2026-10-23T18:00:00+02:00", "Lovers Sun Set", "Track 01. Preview unlocks.", True),
+ ("2026-10-29T18:00:00+02:00", "Magic", "Track 02. With Thab De Soul. Preview unlocks.", True),
+ ("2026-11-05T18:00:00+02:00", "Phephe Phi", "Track 03. Preview unlocks.", True),
+ ("2026-11-13T00:00:00+02:00", "Pre-save opens", "Save The Detour so it lands in your library on release day.", False),
+ ("2026-11-20T18:00:00+02:00", "Making Love To Me", "Track 04. One week to go.", True),
+ ("2026-11-24T18:00:00+02:00", "Free Your Mind (Dub Mix)", "Track 05. The last one before release.", True),
+ ("2026-11-26T18:00:00+02:00", "EP sampler", "All five tracks in one video.", False),
+ ("2026-11-27T00:00:00+02:00", "Out everywhere", "The Detour EP. Streaming and stores.", False),
+]
+LOCK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1Zm2 0h6V7a3 3 0 0 0-6 0v3Z"/></svg>'
+
+def masked(real, until, placeholder):
+    """Text that shows `placeholder` until `until`, then the real text (swapped by site.js)."""
+    return f'<span data-mask-until="{until}" data-real="{real}">{placeholder}</span>'
+
 CATALOGUE = [
  ("Single", "Woza La", "with Thab De Soul, Native Tribe & Da Q-Bic", "https://open.spotify.com/album/1gEAhJ2TRSvhFYs6A6sz5i"),
  ("Single", "Umoya Wami", "with Thab De Soul & Pinochet", "https://open.spotify.com/album/3CmCVAeoaSilbS0JOdQa1r"),
@@ -91,14 +115,15 @@ def footer():
         <p class="muted" style="margin:0 0 18px">The Detour EP · <span data-release-status>Out 27 Nov</span></p>
         {socials_row()}
       </div>
-      <div><h4>Site</h4><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h,t in NAV)}<li><a href="links.html">All links</a></li></ul></div>
+      <div><h4>Site</h4><ul>{"".join(f'<li><a href="{h}">{t}</a></li>' for h,t in NAV)}<li><a href="links.html">All links</a></li><li><a href="index.html#join">Mailing list</a></li></ul></div>
       <div><h4>Listen</h4><ul><li><a data-link="spotify" href="#" target="_blank" rel="noopener">Spotify</a></li><li><a data-link="youtube" href="#" target="_blank" rel="noopener">YouTube</a></li><li><a href="music.html#discography">Discography</a></li></ul></div>
       <div><h4>Bookings &amp; press</h4><ul><li data-contact>DM @killotronix on Instagram</li><li><a href="press.html">Press kit</a></li></ul></div>
     </div>
-    <div class="foot-base"><span>© <span data-year>2026</span> KilloTronix. All rights reserved.</span><span>Gauteng, South Africa</span></div>
+    <div class="foot-base"><span>© <span data-year>2026</span> KilloTronix. All rights reserved.</span><span><a href="privacy.html" style="color:inherit">Privacy</a> · Gauteng, South Africa</span></div>
   </div>
 </footer>
 <script src="js/site.config.js"></script>
+<script src="js/drops.js"></script>
 <script src="js/site.js"></script>
 </body>
 </html>
@@ -112,12 +137,12 @@ def cta_buttons(extra=""):
 
 def player():
     rows = "".join(f'''
-      <button class="track" type="button" data-src="audio/{f}.mp3" aria-pressed="false" aria-label="Play 30-second preview of {t}">
-        <span class="pbtn"><span class="i-play">{ICON["play"]}</span><span class="i-pause">{ICON["pause"]}</span></span>
-        <span class="t-main"><span class="t-title"><span class="n">{n}</span>{t}</span>{f'<span class="t-sub">{w}</span>' if w else ''}<span class="t-bar"><i></i></span></span>
-        <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span>115 BPM</span>
-      </button>''' for n,t,w,f in TRACKS)
-    return f'<div class="player">{rows}</div><p class="player-note">30-second previews. Full tracks on 27 November.</p>'
+      <button class="track" type="button" data-src="audio/{f}.mp3" data-unlock="{u}" aria-pressed="false" aria-label="Track {n} preview">
+        <span class="pbtn"><span class="i-play">{ICON["play"]}</span><span class="i-pause">{ICON["pause"]}</span><span class="i-lock">{LOCK}</span></span>
+        <span class="t-main"><span class="t-title"><span class="n">{n}</span>{masked(t, TITLES_AT, "Track " + n)}</span><span class="t-sub">{masked(w, TITLES_AT, "") if w else ""}<span class="t-when" data-when></span></span><span class="t-bar"><i></i></span></span>
+        <span class="t-side"><span class="eq"><i></i><i></i><i></i><i></i></span><span class="bpm">115 BPM</span></span>
+      </button>''' for n,t,w,f,u in TRACKS)
+    return f'<div class="player">{rows}</div><p class="player-note">Each preview unlocks on its drop date. Full EP on 27 November.</p>'
 
 def ep_block(heading="The EP", lead=True):
     return f'''<div class="ep">
@@ -151,11 +176,12 @@ def catalogue_section(id_=""):
   </div>
 </section>'''
 
-def video_frame(src, poster, label, ratio_class=""):
-    return f'''<div class="video-frame {ratio_class}"><video src="{src}" poster="{poster}" preload="none" playsinline></video>
-      <button class="play-overlay" type="button" aria-label="Play {label}"><span>{ICON["play"]}</span></button></div>'''
+def video_frame(src, poster, label, ratio_class="", unlock=""):
+    return f'''<div class="video-frame {ratio_class}" data-unlock="{unlock}"><video data-src="{src}" poster="{poster}" preload="none" playsinline></video>
+      <button class="play-overlay" type="button" aria-label="Play {label}"><span>{ICON["play"]}</span></button>
+      <div class="lock-overlay"><span class="lk">{LOCK}</span><b data-when-label></b><span class="lk-cd" data-when></span></div></div>'''
 
-MARQUEE_ITEMS = ["The Detour","Out 27.11.2026","Deep house","115 BPM","Lovers Sun Set","Magic","Phephe Phi","Making Love To Me","Free Your Mind"]
+MARQUEE_ITEMS = ["The Detour","Out 27.11.2026","Deep house","115 BPM","5 tracks","Pre-save 13.11","One new direction"]
 def marquee():
     one = "".join(f"<span>{x}<em>✦</em></span>" for x in MARQUEE_ITEMS)
     return f'<div class="marquee" aria-hidden="true"><div class="marquee-track">{one}{one}</div></div>'
@@ -164,8 +190,7 @@ JSONLD = '''<script type="application/ld+json">
 {"@context":"https://schema.org","@type":"MusicGroup","name":"KilloTronix","genre":["Deep house","House"],
  "foundingLocation":{"@type":"Place","name":"Gauteng, South Africa"},
  "sameAs":["https://open.spotify.com/artist/75e0TZuFyubg5tTEPraGZJ","https://www.instagram.com/killotronix/","https://www.tiktok.com/@killotronix","https://www.youtube.com/channel/UCVjBrcWtjk5tYX1POQ_gtgw"],
- "album":{"@type":"MusicAlbum","name":"The Detour","albumReleaseType":"https://schema.org/EPRelease","datePublished":"2026-11-27","numTracks":5,
-  "track":[{"@type":"MusicRecording","name":"Lovers Sun Set"},{"@type":"MusicRecording","name":"Magic","byArtist":[{"@type":"MusicGroup","name":"KilloTronix"},{"@type":"MusicGroup","name":"Thab De Soul"}]},{"@type":"MusicRecording","name":"Phephe Phi"},{"@type":"MusicRecording","name":"Making Love To Me"},{"@type":"MusicRecording","name":"Free Your Mind"}]}}
+ "album":{"@type":"MusicAlbum","name":"The Detour","albumReleaseType":"https://schema.org/EPRelease","datePublished":"2026-11-27","numTracks":5}}
 </script>'''
 
 BIO_SHORT = "KilloTronix is a producer and audio engineer from Gauteng, South Africa. His new EP, The Detour, is five deep house tracks at 115 BPM, out 27 November 2026, with Thab De Soul featuring on Magic."
@@ -174,6 +199,43 @@ BIO_LONG = [
  "His catalogue runs through collaborations with Thab De Soul, Native Tribe, Pinochet and Arabic Piano, on records like Woza La, Umoya Wami, Fortunes and the solo cut Magagala, plus remixes of Izinyanda and Nguva.",
  "The Detour is a deliberate change of road. Five deep house tracks, all at 115 BPM, a step away from the genre he usually produces. Magic reunites him with frequent collaborator Thab De Soul. The EP is out on 27 November 2026, with pre-saves opening on 13 November.",
 ]
+
+def timeline():
+    items = "".join(f'''<li class="drop" data-at="{at}">
+        <span class="dot" aria-hidden="true"></span>
+        <div class="d-when"><span data-date="{at}"></span><span class="pill" data-pill></span></div>
+        <div class="d-body"><h3>{masked(t, TITLES_AT, "Track " + d.split()[1].rstrip(".,")) if is_track else t}</h3><p>{masked(d, TITLES_AT, d.split(".")[0] + ".") if is_track else d}</p><span class="d-cd" data-drop-cd></span></div>
+      </li>''' for at,t,d,is_track in DROPS)
+    return f'''<section id="road" class="road-sec">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><p class="eyebrow">The road to 27.11</p><h2>Every stop, in order</h2></div>
+      <p class="muted" style="margin:0;max-width:34ch">Each track unlocks here the moment it drops on socials. Come back, or get it in your inbox.</p></div>
+    <ol class="timeline reveal d1" data-timeline><span class="tl-fill" aria-hidden="true"></span>{items}</ol>
+  </div>
+</section>'''
+
+def newsletter(compact=False):
+    return f'''<section id="join" class="join-sec">
+  <div class="wrap">
+    <div class="join reveal">
+      <div class="join-copy">
+        <p class="eyebrow"><b>Mailing list</b> · no spam, ever</p>
+        <h2>Ride along</h2>
+        <p class="lede">One email when each track unlocks, the pre-save link on 13 November, and the full EP the morning it drops. That's it.</p>
+      </div>
+      <form class="join-form" data-newsletter novalidate>
+        <div class="f-row">
+          <label class="f"><span>First name <i>(optional)</i></span><input id="nl-name" name="name" type="text" autocomplete="given-name" maxlength="60"></label>
+          <label class="f"><span>Email</span><input id="nl-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        </div>
+        <input class="hp" id="nl-hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="consent"><input id="nl-consent" type="checkbox" required><span>Yes, email me about KilloTronix releases. I can unsubscribe any time. <a href="privacy.html">Privacy</a></span></label>
+        <button class="btn btn-primary" type="submit"><span class="lbl">Join the list</span></button>
+        <p class="nl-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>'''
 
 # ---------------------------------------------------------------- pages
 def page_index():
@@ -187,6 +249,7 @@ def page_index():
     <p class="eyebrow fade-up d1"><b>New EP</b> · KilloTronix · Deep house</p>
     <h1><span class="line"><span>The</span></span><span class="line"><span>Detour</span></span></h1>
     <p class="lede fade-up d2">Five deep house tracks at 115 BPM. Out Friday, 27 November 2026.</p>
+    <a class="next-drop fade-up d3" href="#road" data-next-drop><span class="nd-dot"></span><span class="nd-txt">Next stop on the road</span></a>
     <div class="countdown fade-up d3" data-countdown aria-label="Countdown to release"></div>
     <div class="fade-up d4">{cta_buttons('<a class="btn btn-ghost" href="videos.html">'+ICON["play"]+'Watch the trailer</a>')}</div>
   </div>
@@ -197,11 +260,13 @@ def page_index():
 <div class="road" aria-hidden="true"></div>
 <section>
   <div class="wrap">
-    <div class="sec-head reveal"><div><p class="eyebrow">Trailer · Lovers Sun Set</p><h2>Press play on the drive</h2></div>
+    <div class="sec-head reveal"><div><p class="eyebrow">Trailer · {masked("Lovers Sun Set", TITLES_AT, "Track 01")}</p><h2>Press play on the drive</h2></div>
       <a class="btn btn-ghost" href="videos.html">All videos</a></div>
-    <div class="reveal d1">{video_frame("media/trailer-lovers-sun-set.mp4","img/trailer-poster.jpg","The Detour trailer")}</div>
+    <div class="reveal d1">{video_frame("media/trailer-lovers-sun-set.mp4","img/trailer-poster.jpg","The Detour trailer", unlock=TRAILER_AT)}</div>
   </div>
 </section>
+{timeline()}
+{newsletter()}
 {stats_section()}
 {catalogue_section()}
 </main>
@@ -234,6 +299,8 @@ def page_music():
     <div class="chips">{pl}<span class="muted" data-platforms-empty>Store links appear here on release day. Until then, follow KilloTronix on <a data-link="spotify" href="#" target="_blank" rel="noopener">Spotify</a>.</span></div>
   </div>
 </div></section>
+{timeline()}
+{newsletter()}
 <div class="road" aria-hidden="true"></div>
 {catalogue_section("discography")}
 </main>
@@ -249,9 +316,9 @@ def page_videos():
 </div></header>
 <section style="padding-top:10px"><div class="wrap">
   <div class="video-grid">
-    <div class="reveal">{video_frame("media/trailer-lovers-sun-set.mp4","img/trailer-poster.jpg","The Detour trailer, Lovers Sun Set")}
-      <div class="cap"><span><b>The Detour (Trailer)</b> · Lovers Sun Set</span><span>16:9 · 0:25</span></div></div>
-    <div class="reveal d1 vert">{video_frame("media/ep-sampler-9x16.mp4","img/sampler-poster.jpg","The Detour EP sampler")}
+    <div class="reveal">{video_frame("media/trailer-lovers-sun-set.mp4","img/trailer-poster.jpg","The Detour trailer", unlock=TRAILER_AT)}
+      <div class="cap"><span><b>The Detour (Trailer)</b> · {masked("Lovers Sun Set", TITLES_AT, "Track 01")}</span><span>16:9 · 0:25</span></div></div>
+    <div class="reveal d1 vert">{video_frame("media/ep-sampler-9x16.mp4","img/sampler-poster.jpg","The Detour EP sampler", unlock=SAMPLER_AT)}
       <div class="cap"><span><b>EP sampler</b> · all five tracks</span><span>9:16 · 0:25</span></div></div>
   </div>
   <div class="reveal" style="margin-top:40px;display:flex;gap:12px;flex-wrap:wrap">
@@ -325,7 +392,7 @@ def page_press():
     <div><dt>Distribution</dt><dd>Symphonic</dd></div>
   </dl>
   <ol class="reveal" style="margin:28px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:17px">
-    {"".join(f"<li>{t}{(' <span class=muted>('+w+')</span>') if w else ''}</li>" for n,t,w,f in TRACKS)}
+    {"".join(f"<li>{masked(t, TITLES_AT, 'Revealed 19 Oct')}{(' <span class=muted>('+masked(w, TITLES_AT, '')+')</span>') if w else ''}</li>" for n,t,w,f,u in TRACKS)}
   </ol>
 </div></section>
 <section style="padding-top:0"><div class="wrap">
@@ -344,12 +411,15 @@ def page_links():
   <div class="cover-tilt fade-up"><div class="cover"><img src="img/the-detour-cover.jpg" alt="The Detour EP cover" width="1080" height="1080"><span class="tag" data-release-status>Out 27 Nov</span></div></div>
   <div class="countdown" data-countdown aria-label="Countdown to release" style="justify-content:space-between"></div>
   <a class="lnk feature" data-cta aria-disabled="true"><span class="ic">{ICON["play"]}</span><span><b class="lbl">Pre-save opens 13 Nov</b><span>The Detour EP · 27 Nov</span></span><span></span></a>
-  <a class="lnk" href="music.html"><span class="ic">{ICON["play"]}</span><span><b>Play the previews</b><span>All five tracks, 30 seconds each</span></span><span></span></a>
-  <a class="lnk" href="videos.html"><span class="ic">{ICON["youtube"]}</span><span><b>Watch the trailer</b><span>Lovers Sun Set</span></span><span></span></a>
+  <a class="lnk" href="index.html#road" data-next-drop><span class="ic">{LOCK}</span><span><b>Next drop</b><span class="nd-txt">The road to 27.11</span></span><span></span></a>
+  <a class="lnk" href="index.html#join"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.4V17h16V7.4l-8 5.3-8-5.3ZM5.4 7l6.6 4.4L18.6 7H5.4Z"/></svg></span><span><b>Join the mailing list</b><span>Each track the moment it unlocks</span></span><span></span></a>
+  <a class="lnk" href="music.html"><span class="ic">{ICON["play"]}</span><span><b>Play the previews</b><span>Unlocked tracks, 30 seconds each</span></span><span></span></a>
+  <a class="lnk" href="videos.html"><span class="ic">{ICON["youtube"]}</span><span><b>Watch the trailer</b><span>The Detour</span></span><span></span></a>
   {rows}
   <p class="muted" style="text-align:center;font-size:13px;margin:8px 0 0">Numbers as of <span data-stats-asof></span></p>
 </main>
 <script src="js/site.config.js"></script>
+<script src="js/drops.js"></script>
 <script src="js/site.js"></script>
 </body></html>
 '''
@@ -365,8 +435,37 @@ def page_404():
 </main>
 ''' + footer()
 
-PAGES = {"index.html":page_index,"music.html":page_music,"videos.html":page_videos,"about.html":page_about,"press.html":page_press,"links.html":page_links,"404.html":page_404}
+def page_privacy():
+    return head("Privacy", "How KilloTronix handles mailing list sign-ups.", path="privacy.html") + header("") + f'''<main>
+<header class="page-hero"><div class="wrap">
+  <p class="eyebrow fade-up"><b>Privacy</b> · Mailing list</p>
+  <h1 class="reveal">Privacy</h1>
+  <p class="lede reveal d1">Short and plain: what happens when you join the mailing list.</p>
+</div></header>
+<section style="padding-top:10px"><div class="wrap prose-plain reveal">
+  <h3>What we collect</h3>
+  <p>Your email address, and your first name if you give it. Nothing else. This site uses no tracking cookies and no ads.</p>
+  <h3>What we use it for</h3>
+  <p>Emails about KilloTronix music: new tracks, release dates, pre-save and release links, and the occasional show or announcement. We never sell or share your details with anyone else.</p>
+  <h3>Where it's kept</h3>
+  <p>Sign-ups are stored with our email service provider, which sends the emails on our behalf. It only processes your details to deliver those emails.</p>
+  <h3>Your choices</h3>
+  <p>Every email has an unsubscribe link. You can also ask us to see, correct or delete your details at any time. We'll act on it promptly, in line with South Africa's Protection of Personal Information Act (POPIA).</p>
+  <h3>Contact</h3>
+  <p data-contact>DM @killotronix on Instagram</p>
+  <p class="muted">Last updated 18 October 2026.</p>
+</div></section>
+</main>
+''' + footer()
+
+PAGES = {"index.html":page_index,"music.html":page_music,"videos.html":page_videos,"about.html":page_about,"press.html":page_press,"links.html":page_links,"404.html":page_404,"privacy.html":page_privacy}
+def drops_js():
+    import json
+    rows = [{"at": at, "title": t, "masked": ("Track " + d.split()[1].rstrip(".,") + " preview") if is_track else t, "until": TITLES_AT} for at,t,d,is_track in DROPS]
+    return "/* generated by tools/build.py from DROPS */\nwindow.SITE_DROPS = " + json.dumps(rows, indent=1) + ";\n"
+
 if __name__ == "__main__":
+    (ROOT / "js" / "drops.js").write_text(drops_js(), encoding="utf-8")
     for name, fn in PAGES.items():
         (ROOT / name).write_text(fn(), encoding="utf-8")
         print("built", name)

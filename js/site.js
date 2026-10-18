@@ -24,7 +24,10 @@
   }
 
   /* ---------- release state: pre-save / listen buttons ---------- */
-  const now = () => Date.now();
+  // Local testing only: http://localhost:8000/?now=2026-10-30T19:00 previews the site at that moment.
+  const qNow = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).get("now");
+  const shift = qNow ? Date.parse(qNow + (qNow.length <= 16 ? ":00+02:00" : "")) - Date.now() : 0;
+  const now = () => Date.now() + shift;
   const relT = Date.parse(R.releaseAt), preT = Date.parse(R.presaveOpens);
   function ctaState() {
     const t = now();
@@ -60,7 +63,67 @@
       });
     });
   }
-  if (cds.length) { tickCountdown(); setInterval(() => { tickCountdown(); paintCtas(); }, 1000); }
+  /* ---------- drop schedule: masks, locked previews/videos, timeline, next drop ---------- */
+  const hm = t => new Date(t).toLocaleTimeString("en-ZA", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Africa/Johannesburg" });
+  const when = t => sast(t, { weekday: "short", day: "numeric", month: "short" }) + " · " + hm(t);
+  const left = ms => {
+    const d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60, s = Math.floor(ms / 1e3) % 60;
+    return d ? `${d}d ${h}h ${m}m` : h ? `${h}h ${m}m ${s}s` : `${m}m ${s}s`;
+  };
+  function tickDrops() {
+    const t = now();
+    $$("[data-mask-until]").forEach(el => {
+      const open = t >= Date.parse(el.dataset.maskUntil);
+      if (open && !el.dataset.shown) { el.textContent = el.dataset.real; el.dataset.shown = 1; el.classList.add("unmasked"); }
+      el.classList.toggle("masked", !open);
+    });
+    // tracks
+    const lockedTracks = $$(".track[data-unlock]").filter(b => t < Date.parse(b.dataset.unlock));
+    $$(".track[data-unlock]").forEach(b => {
+      const u = Date.parse(b.dataset.unlock), locked = t < u, w = $("[data-when]", b);
+      b.classList.toggle("locked", locked);
+      b.setAttribute("aria-disabled", locked);
+      if (w) w.textContent = locked ? (b === lockedTracks[0] ? `Unlocks in ${left(u - t)}` : `Unlocks ${when(u)}`) : "";
+      b.classList.toggle("is-next", locked && b === lockedTracks[0]);
+    });
+    // videos
+    $$(".video-frame[data-unlock]").forEach(f => {
+      const u = Date.parse(f.dataset.unlock), v = $("video", f);
+      const locked = !!f.dataset.unlock && t < u;
+      f.classList.toggle("locked", locked);
+      if (locked) { $("[data-when-label]", f).textContent = "Premieres " + when(u); $("[data-when]", f).textContent = "in " + left(u - t); }
+      else if (v && v.dataset.src && !v.getAttribute("src")) v.src = v.dataset.src;
+    });
+    // timeline
+    $$("[data-timeline]").forEach(ol => {
+      const items = $$(".drop", ol); let nextI = -1;
+      items.forEach((li, i) => {
+        const at = Date.parse(li.dataset.at), done = t >= at;
+        if (!done && nextI < 0) nextI = i;
+        li.classList.toggle("done", done); li.classList.toggle("next", i === nextI);
+        const ds = $("[data-date]", li); if (ds && !ds.textContent) ds.textContent = when(at);
+        $("[data-pill]", li).textContent = done ? "Dropped" : i === nextI ? "Next" : "Coming";
+        $("[data-drop-cd]", li).textContent = i === nextI ? "in " + left(at - t) : "";
+      });
+      const p = nextI < 0 ? 1 : nextI === 0 ? 0 : (nextI - .5) / (items.length - 1);
+      ol.style.setProperty("--p", p);
+    });
+    // next-drop chips (hero + links page)
+    const firstTl = $("[data-timeline]");
+    $$("[data-next-drop]").forEach(a => {
+      const txt = $(".nd-txt", a); if (!txt) return;
+      const next = firstTl && $(".drop.next", firstTl);
+      if (next) { txt.textContent = `Next: ${$("h3", next).textContent} · in ${left(Date.parse(next.dataset.at) - t)}`; }
+      else if (!firstTl) {
+        const d = (window.SITE_DROPS || []).find(x => Date.parse(x.at) > t);
+        const label = d && (t < Date.parse(d.until) ? d.masked : d.title);
+        txt.textContent = d ? `${label} · in ${left(Date.parse(d.at) - t)}` : "The Detour is out now";
+      } else txt.textContent = "The Detour is out now";
+    });
+  }
+  tickDrops();
+  setInterval(() => { tickCountdown(); paintCtas(); tickDrops(); }, 1000);
+  if (cds.length) tickCountdown();
 
   /* ---------- stats from config ---------- */
   $$("[data-stat]").forEach(el => {
@@ -135,6 +198,7 @@
   const tracks = $$(".track[data-src]");
   function stop() { if (current) { current.classList.remove("playing"); current.setAttribute("aria-pressed", "false"); $(".t-bar i", current).style.width = "0"; } current = null; }
   tracks.forEach((t, i) => t.addEventListener("click", () => {
+    if (t.classList.contains("locked")) { t.classList.remove("nudge"); void t.offsetWidth; t.classList.add("nudge"); return; }
     if (current === t) { audio.pause(); stop(); return; }
     stop(); current = t;
     audio.src = t.dataset.src; audio.currentTime = 0;
@@ -144,14 +208,47 @@
   audio.addEventListener("timeupdate", () => { if (current && audio.duration) $(".t-bar i", current).style.width = (audio.currentTime / audio.duration * 100) + "%"; });
   audio.addEventListener("ended", () => {
     const i = tracks.indexOf(current); stop();
-    if (i > -1 && i < tracks.length - 1) tracks[i + 1].click();   // roll into the next preview, like the EP would
+    const nx = tracks.slice(i + 1).find(x => !x.classList.contains("locked"));
+    if (nx) nx.click();   // roll into the next preview, like the EP would
   });
 
   /* ---------- click-to-play videos ---------- */
   $$(".video-frame").forEach(f => {
     const v = $("video", f), b = $(".play-overlay", f);
     if (!b) return;
-    b.addEventListener("click", () => { f.classList.add("started"); v.controls = true; v.play(); audio.pause(); stop(); });
+    b.addEventListener("click", () => {
+      if (f.classList.contains("locked")) return;
+      if (!v.getAttribute("src") && v.dataset.src) v.src = v.dataset.src;
+      f.classList.add("started"); v.controls = true; v.play(); audio.pause(); stop();
+    });
+  });
+
+  /* ---------- mailing list ---------- */
+  $$("[data-newsletter]").forEach(form => {
+    const msg = $(".nl-msg", form), btn = $("button[type=submit]", form);
+    const say = (t, ok) => { msg.textContent = t; msg.className = "nl-msg " + (ok ? "ok" : "err"); };
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const email = form.querySelector("[name=email]").value.trim();
+      const name = form.querySelector("[name=name]").value.trim();
+      if (form.querySelector("[name=company]").value) return;                       // bot
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return say("That email doesn't look right. Check it and try again.");
+      if (!form.querySelector("[type=checkbox]").checked) return say("Tick the box so we're allowed to email you.");
+      const cfg = S.newsletter || {};
+      if (!cfg.action) return say("Sign-ups open in the next few days. Follow @killotronix on Instagram until then.", false);
+      const fd = new FormData();
+      fd.append(cfg.emailField || "EMAIL", email);
+      if (name) fd.append(cfg.nameField || "FNAME", name);
+      Object.entries(cfg.extra || {}).forEach(([k, v]) => fd.append(k, v));
+      btn.disabled = true; $(".lbl", btn).textContent = "Joining…";
+      try {
+        await fetch(cfg.action, { method: "POST", mode: "no-cors", body: fd });
+        form.classList.add("joined");
+        say(`You're on the list${name ? ", " + name : ""}. Check your inbox to confirm, then you'll hear from us when the next track unlocks.`, true);
+      } catch (_) {
+        say("Couldn't reach the mailing list just now. Try again in a minute.");
+      } finally { btn.disabled = false; $(".lbl", btn).textContent = "Join the list"; }
+    });
   });
 
   /* ---------- copy buttons ---------- */
